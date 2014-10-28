@@ -295,3 +295,35 @@
 2014-10-27 23:46:54.192 happy[10294:126733] [CDVTimer][TotalPluginStartup] 0.241995ms
 2014-10-27 23:46:54.238 happy[10294:126733] Resetting plugins due to page load.
 2014-10-27 23:46:54.465 happy[10294:126733] Finished load of: file:///Users/efealatan/Library/Developer/CoreSimulator/Devices/45E977B9-0921-476A-915E-B5FAA9403199/data/Containers/Bundle/Application/9767D5A2-B277-47FB-92C3-19813FFB2DEB/happy.app/www/index.html#/tab/mood
+2014-10-27 23:58:52.395 happy[11230:139822] DiskCookieStorage changing policy from 2 to 0, cookie file: file:///Users/efealatan/Library/Developer/CoreSimulator/Devices/45E977B9-0921-476A-915E-B5FAA9403199/data/Containers/Data/Application/04D64F17-58D6-4194-BD69-6FF079C70F57/Library/Cookies/Cookies.binarycookies
+2014-10-27 23:58:52.540 happy[11230:139822] Apache Cordova native platform version 3.6.3 is starting.
+2014-10-27 23:58:52.541 happy[11230:139822] Multi-tasking -> Device: YES, App: YES
+2014-10-27 23:58:52.548 happy[11230:139822] Unlimited access to network resources
+2014-10-27 23:58:52.807 happy[11230:139822] [CDVTimer][keyboard] 0.060976ms
+2014-10-27 23:58:52.807 happy[11230:139822] [CDVTimer][TotalPluginStartup] 0.235021ms
+2014-10-27 23:58:52.855 happy[11230:139822] Resetting plugins due to page load.
+2014-10-27 23:58:53.089 happy[11230:139822] Finished load of: file:///Users/efealatan/Library/Developer/CoreSimulator/Devices/45E977B9-0921-476A-915E-B5FAA9403199/data/Containers/Bundle/Application/D2191652-2D5F-4D2B-82CE-2A76A64834F4/happy.app/www/index.html#/tab/mood
+2014-10-28 00:32:24.975 happy[11533:178657] DiskCookieStorage changing policy from 2 to 0, cookie file: file:///Users/efealatan/Library/Developer/CoreSimulator/Devices/45E977B9-0921-476A-915E-B5FAA9403199/data/Containers/Data/Application/C3433EBC-D1CA-4981-B95F-1E58C7BAF58B/Library/Cookies/Cookies.binarycookies
+2014-10-28 00:32:25.044 happy[11533:178657] Apache Cordova native platform version 3.6.3 is starting.
+2014-10-28 00:32:25.045 happy[11533:178657] Multi-tasking -> Device: YES, App: YES
+2014-10-28 00:32:25.049 happy[11533:178657] Unlimited access to network resources
+2014-10-28 00:32:25.237 happy[11533:178657] [CDVTimer][keyboard] 0.055015ms
+2014-10-28 00:32:25.237 happy[11533:178657] [CDVTimer][TotalPluginStartup] 0.216961ms
+2014-10-28 00:32:25.356 happy[11533:178657] Resetting plugins due to page load.
+2014-10-28 00:32:25.494 happy[11533:178657] Finished load of: file:///Users/efealatan/Library/Developer/CoreSimulator/Devices/45E977B9-0921-476A-915E-B5FAA9403199/data/Containers/Bundle/Application/BC0EE2ED-92AA-45FE-8FB2-B6EF1BC6B91B/happy.app/www/index.html#/tab/mood
+2014-10-28 00:37:24.094 happy[11697:185421] DiskCookieStorage changing policy from 2 to 0, cookie file: file:///Users/efealatan/Library/Developer/CoreSimulator/Devices/45E977B9-0921-476A-915E-B5FAA9403199/data/Containers/Data/Application/A977FC92-4757-43DE-815A-2EC082472301/Library/Cookies/Cookies.binarycookies
+2014-10-28 00:37:24.175 happy[11697:185421] Apache Cordova native platform version 3.6.3 is starting.
+2014-10-28 00:37:24.176 happy[11697:185421] Multi-tasking -> Device: YES, App: YES
+2014-10-28 00:37:24.181 happy[11697:185421] Unlimited access to network resources
+2014-10-28 00:37:24.375 happy[11697:185421] [CDVTimer][keyboard] 0.054955ms
+2014-10-28 00:37:24.375 happy[11697:185421] [CDVTimer][TotalPluginStartup] 0.218987ms
+2014-10-28 00:37:24.486 happy[11697:185421] Resetting plugins due to page load.
+2014-10-28 00:37:24.748 happy[11697:185421] Finished load of: file:///Users/efealatan/Library/Developer/CoreSimulator/Devices/45E977B9-0921-476A-915E-B5FAA9403199/data/Containers/Bundle/Application/03FC44D4-2B3E-4215-96E9-EF5ED0C5FAFE/happy.app/www/index.html#/tab/mood
+2014-10-28 00:40:57.260 happy[11898:190403] DiskCookieStorage changing policy from 2 to 0, cookie file: file:///Users/efealatan/Library/Developer/CoreSimulator/Devices/45E977B9-0921-476A-915E-B5FAA9403199/data/Containers/Data/Application/854B693A-35F6-4CB2-80AB-6E17E516667E/Library/Cookies/Cookies.binarycookies
+2014-10-28 00:40:57.379 happy[11898:190403] Apache Cordova native platform version 3.6.3 is starting.
+2014-10-28 00:40:57.380 happy[11898:190403] Multi-tasking -> Device: YES, App: YES
+2014-10-28 00:40:57.385 happy[11898:190403] Unlimited access to network resources
+2014-10-28 00:40:57.603 happy[11898:190403] [CDVTimer][keyboard] 0.082016ms
+2014-10-28 00:40:57.604 happy[11898:190403] [CDVTimer][TotalPluginStartup] 0.268042ms
+2014-10-28 00:40:57.652 happy[11898:190403] Resetting plugins due to page load.
+2014-10-28 00:40:57.882 happy[11898:190403] Finished load of: file:///Users/efealatan/Library/Developer/CoreSimulator/Devices/45E977B9-0921-476A-915E-B5FAA9403199/data/Containers/Bundle/Application/F6B0FBC7-E714-4AA2-85A6-9EBFD3E1B6CF/happy.app/www/index.html#/tab/mood
