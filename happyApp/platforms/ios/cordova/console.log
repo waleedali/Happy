@@ -279,3 +279,19 @@
 2014-10-27 23:45:08.959 happy[9943:125029] [CDVTimer][TotalPluginStartup] 0.257969ms
 2014-10-27 23:45:09.002 happy[9943:125029] Resetting plugins due to page load.
 2014-10-27 23:45:09.209 happy[9943:125029] Finished load of: file:///Users/efealatan/Library/Developer/CoreSimulator/Devices/45E977B9-0921-476A-915E-B5FAA9403199/data/Containers/Bundle/Application/5D437CBD-4A4B-4818-B900-43B1E54F7D84/happy.app/www/index.html#/tab/mood
+2014-10-27 23:46:26.352 happy[10133:126139] DiskCookieStorage changing policy from 2 to 0, cookie file: file:///Users/efealatan/Library/Developer/CoreSimulator/Devices/45E977B9-0921-476A-915E-B5FAA9403199/data/Containers/Data/Application/8E14BFE8-3D8F-4E2C-9557-2EE5CB432930/Library/Cookies/Cookies.binarycookies
+2014-10-27 23:46:26.450 happy[10133:126139] Apache Cordova native platform version 3.6.3 is starting.
+2014-10-27 23:46:26.451 happy[10133:126139] Multi-tasking -> Device: YES, App: YES
+2014-10-27 23:46:26.456 happy[10133:126139] Unlimited access to network resources
+2014-10-27 23:46:26.686 happy[10133:126139] [CDVTimer][keyboard] 0.068009ms
+2014-10-27 23:46:26.686 happy[10133:126139] [CDVTimer][TotalPluginStartup] 0.250041ms
+2014-10-27 23:46:26.733 happy[10133:126139] Resetting plugins due to page load.
+2014-10-27 23:46:26.954 happy[10133:126139] Finished load of: file:///Users/efealatan/Library/Developer/CoreSimulator/Devices/45E977B9-0921-476A-915E-B5FAA9403199/data/Containers/Bundle/Application/095405E2-A391-48FA-AED2-F4D081C47AA0/happy.app/www/index.html#/tab/mood
+2014-10-27 23:46:53.900 happy[10294:126733] DiskCookieStorage changing policy from 2 to 0, cookie file: file:///Users/efealatan/Library/Developer/CoreSimulator/Devices/45E977B9-0921-476A-915E-B5FAA9403199/data/Containers/Data/Application/68D7E17E-D72B-4E65-9E10-AD62998DB0AF/Library/Cookies/Cookies.binarycookies
+2014-10-27 23:46:53.983 happy[10294:126733] Apache Cordova native platform version 3.6.3 is starting.
+2014-10-27 23:46:53.984 happy[10294:126733] Multi-tasking -> Device: YES, App: YES
+2014-10-27 23:46:53.989 happy[10294:126733] Unlimited access to network resources
+2014-10-27 23:46:54.192 happy[10294:126733] [CDVTimer][keyboard] 0.062943ms
+2014-10-27 23:46:54.192 happy[10294:126733] [CDVTimer][TotalPluginStartup] 0.241995ms
+2014-10-27 23:46:54.238 happy[10294:126733] Resetting plugins due to page load.
+2014-10-27 23:46:54.465 happy[10294:126733] Finished load of: file:///Users/efealatan/Library/Developer/CoreSimulator/Devices/45E977B9-0921-476A-915E-B5FAA9403199/data/Containers/Bundle/Application/9767D5A2-B277-47FB-92C3-19813FFB2DEB/happy.app/www/index.html#/tab/mood
