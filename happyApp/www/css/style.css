@@ -1,1 +1,24 @@
 /* Empty. Add your own CSS if you like */
+.swiper-slide {
+  	background-color: #FF9900;
+  	border-top: 1px solid #fff;
+}
+
+.swiper-container {
+	overflow-y:auto;
+    height:100%;
+}
+
+.slide1 {
+	background-color: #FF9900;
+}
+
+.slide2 {
+	background-color: #33CC00;
+}
+
+.slide3 {
+	background-color: #FFFF00;
+}
+
+
