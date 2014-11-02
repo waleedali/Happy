@@ -6,9 +6,7 @@ angular.module('starter.controllers', [])
 	   var mySwiper = new Swiper('.swiper-container',{
 	    //Your options here:
 	    mode:'vertical',
-	    loop: true,
-	    centeredSlides: true
-	    
+	    loop: true
 	  }); 
 
 	};
