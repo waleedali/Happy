@@ -1,6 +1,19 @@
 angular.module('starter.controllers', [])
 
 .controller('MoodCtrl', function($scope) {
+
+	var init = function () {
+	   var mySwiper = new Swiper('.swiper-container',{
+	    //Your options here:
+	    mode:'vertical',
+	    loop: true
+	  }); 
+
+	};
+	
+
+	// init the view
+	init();
 })
 
 .controller('FriendsCtrl', function($scope, Friends) {

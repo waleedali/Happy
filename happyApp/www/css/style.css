@@ -1,1 +1,50 @@
 /* Empty. Add your own CSS if you like */
+.swiper-slide {
+  	background-color: #FF9900;
+  	border-top: 1px solid #fff;
+}
+
+.swiper-container {
+	
+}
+
+.slide1 {
+	background-color: #FFFF00;
+}
+
+.slide2 {
+	background-color: #33CC00;
+}
+
+.slide3 {
+	background-color: #FF9900;
+}
+
+.slide4 {
+	background-color: #CC66FF;
+}
+
+.slide5 {
+	background-color: #CCCC33;
+}
+
+.slide6 {
+	background-color: #FF0000;
+}
+
+@font-face {
+    font-family: moodFont;
+    src: url(../fonts/YolksEmoticons.otf) format("opentype");
+}
+
+.mood-face {
+	text-align: center;
+	vertical-align: middle;
+	font-family: moodFont;
+	padding-top: 55%;
+	display: inline-block;
+	vertical-align: middle;
+	font-size: 200pt;
+}
+
+
