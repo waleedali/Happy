@@ -1,4 +1,4 @@
-angular.module('happy.controllers', [])
+angular.module('happy.controllers', ['ionic'])
 
 .controller('MoodCtrl', function($scope) {
 
@@ -17,24 +17,25 @@ angular.module('happy.controllers', [])
 
 .controller('AnalyticsCtrl', function($scope, $ionicModal, $timeout){
 
-	
-
-	// Create the settings modal that we will use later
-  $ionicModal.fromTemplateUrl('templates/settings.html', {
-    scope: $scope
+  ////////////SETTINGS MODAL///////////////////////////
+  // Create the settings modal that we will use later
+	$ionicModal.fromTemplateUrl('templates/settings.html', {
+    scope: $scope,
+    animation: 'slide-in-up'
   }).then(function(modal) {
     $scope.modal = modal;
   });
 
-  // Triggered in the login modal to close it
+  //open the settings modal
+  $scope.openSettings = function() {
+    $scope.modal.show();
+  };	
+
+  // Triggered in the settings modal to close it
   $scope.closeSettings = function() {
     $scope.modal.hide();
   };
 
-  // Open the login modal
-  $scope.settings = function() {
-    $scope.modal.show();
-  };
 
 })//end of Analytics Controller
 
