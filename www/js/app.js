@@ -53,7 +53,7 @@ angular.module('happy', ['ionic', 'happy.controllers', 'happy.services'])
       views: {
         'tab-analytics': {
           templateUrl: 'templates/tab-analytics.html',
-          controller: 'FriendsCtrl'
+          controller: 'AnalyticsCtrl'
         }
       }
     })
