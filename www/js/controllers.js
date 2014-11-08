@@ -1,6 +1,6 @@
 angular.module('happy.controllers', ['ionic'])
 
-.controller('MoodCtrl', function($scope, $ionicPopup) {
+.controller('MoodCtrl', function($scope, $ionicPopup, $ionicTabsDelegate, $timeout) {
 
   $scope.data = {}
 
@@ -23,14 +23,27 @@ angular.module('happy.controllers', ['ionic'])
   };
 
   $scope.init = function () {
-    var mySwiper = new Swiper('.swiper-container',{
-      //Your options here:
+    var swiperParent = new Swiper('.swiper-parent',{
+      slidesPerView: 1,
+      onSlideChangeEnd: function() {
+        $timeout(function(){
+          $ionicTabsDelegate.$getByHandle('HappyTabs').select(1);
+        },0)
+      }
+    })
+
+    var swiperNested1 = new Swiper('.swiper-nested-1',{
       mode:'vertical',
       loop: true,
       preventLinks: false,
       onSlideClick: saveMood
     });
-  };//end of function
+
+    var swiperNested2 = new Swiper('.swiper-nested-2',{
+      mode: 'vertical'
+    })
+
+  };
 
   // init the view
   $scope.init();
