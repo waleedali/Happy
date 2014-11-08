@@ -1,17 +1,40 @@
 angular.module('happy.controllers', ['ionic'])
 
-.controller('MoodCtrl', function($scope) {
+.controller('MoodCtrl', function($scope, $ionicPopup) {
 
-	var init = function () {
-	   var mySwiper = new Swiper('.swiper-container',{
-	    //Your options here:
-	    mode:'vertical',
-	    loop: true
-	  }); 
-	};//end of function
+  $scope.data = {}
 
-	// init the view
-	init();
+  var saveMood = function(swiper) {
+      $ionicPopup.show({
+      template: '<input type="text" placeholder=" What happened?" ng-model="data.note">',
+      title: 'Save this mood?',
+      scope: $scope,
+      buttons: [
+        { text: 'Cancel' },
+        {
+          text: '<b>Save</b>',
+          type: 'button-positive',
+          onTap: function(e) {
+            return $scope.data.note;
+          }
+        },
+      ]
+    });
+  };
+
+  $scope.init = function () {
+    var mySwiper = new Swiper('.swiper-container',{
+      //Your options here:
+      mode:'vertical',
+      loop: true,
+      preventLinks: false,
+      onSlideClick: saveMood
+    });
+  };//end of function
+
+  // init the view
+  $scope.init();
+
 })//end of Mood Controller
 
 
