@@ -51,7 +51,7 @@ angular.module('happy.controllers', ['ionic'])
 })//end of Mood Controller
 
 
-.controller('AnalyticsCtrl', function($scope, $ionicModal, $timeout){
+.controller('AnalyticsCtrl', function($scope, $ionicModal, $timeout, $ionicTabsDelegate){
 
   ////////////SETTINGS MODAL///////////////////////////
   // Create the settings modal that we will use later
@@ -71,6 +71,13 @@ angular.module('happy.controllers', ['ionic'])
   $scope.closeSettings = function() {
     $scope.modal.hide();
   };
+
+  $scope.swipeRight = function() {
+    console.log('hello!');
+    $timeout(function(){
+          $ionicTabsDelegate.$getByHandle('HappyTabs').select(0);
+        },0)
+  }
 
 
 })//end of Analytics Controller
