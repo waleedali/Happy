@@ -1,12 +1,19 @@
 angular.module('happy.controllers', ['ionic'])
 
+<<<<<<< HEAD
 .controller('MoodCtrl', function($scope, $ionicPopup, $ionicTabsDelegate, $timeout) {
+=======
+<<<<<<< HEAD
+.controller('MoodCtrl', function($scope, $ionicPopup, DataSvc) {
+=======
+.controller('MoodCtrl', function($scope, $ionicPopup, $ionicTabsDelegate, $timeout) {
+>>>>>>> 62c1e610e4205474994850494174aefb99c2bd49
+>>>>>>> efe_displayMoodLog
 
-  $scope.data = {}
+  //localStorage.removeItem('happyMoodLogger.1.0');
 
   var saveMood = function(swiper) {
       $ionicPopup.show({
-      template: '<input type="text" placeholder=" What happened?" ng-model="data.note">',
       title: 'Save this mood?',
       scope: $scope,
       buttons: [
@@ -15,6 +22,30 @@ angular.module('happy.controllers', ['ionic'])
           text: '<b>Save</b>',
           type: 'button-positive',
           onTap: function(e) {
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+
+                var moodData = new MoodObject(swiper.activeLoopIndex, new Date());
+                console.log(moodData);
+                var userMoodLog = JSON.parse(localStorage.getItem('happyMoodLogger.1.0'))|| [];
+                if (typeof(userMoodLog) === undefined||userMoodLog === null) {
+
+                  userMoodLog=[];
+                  
+                };
+                
+                console.log(userMoodLog);
+
+                userMoodLog.push(moodData);
+
+                DataSvc.put(userMoodLog);
+
+                //localStorage.setItem('happyMoodLogger.1.0', JSON.stringify(userMoodLog));
+              
+          }//end of function
+=======
+>>>>>>> efe_displayMoodLog
                     var currentSize = window.localStorage['size'] || '0';
                     window.localStorage['size'] = (parseInt(currentSize) + 1).toString();
                     var moodData = {
@@ -29,6 +60,7 @@ angular.module('happy.controllers', ['ionic'])
 //                localStorage.clear();
             return $scope.data.note;
           }
+>>>>>>> 62c1e610e4205474994850494174aefb99c2bd49
         },
       ]
     });
@@ -90,11 +122,20 @@ angular.module('happy.controllers', ['ionic'])
 })//end of Mood Controller
 
 
+<<<<<<< HEAD
 .controller('AnalyticsCtrl', function($scope, $ionicModal, $timeout, $ionicTabsDelegate){
+=======
+<<<<<<< HEAD
+
+.controller('AnalyticsCtrl', function($scope, $ionicModal, $timeout, $ionicListDelegate, DataSvc){
+=======
+.controller('AnalyticsCtrl', function($scope, $ionicModal, $timeout, $ionicTabsDelegate){
+>>>>>>> 62c1e610e4205474994850494174aefb99c2bd49
+>>>>>>> efe_displayMoodLog
 
   ////////////SETTINGS MODAL///////////////////////////
   // Create the settings modal that we will use later
-	$ionicModal.fromTemplateUrl('templates/settings.html', {
+  $ionicModal.fromTemplateUrl('templates/settings.html', {
     scope: $scope,
     animation: 'slide-in-up'
   }).then(function(modal) {
@@ -104,7 +145,7 @@ angular.module('happy.controllers', ['ionic'])
   //open the settings modal
   $scope.openSettings = function() {
     $scope.modal.show();
-  };	
+  };  
 
   // Triggered in the settings modal to close it
   $scope.closeSettings = function() {
@@ -118,19 +159,21 @@ angular.module('happy.controllers', ['ionic'])
         },0)
   }
 
+<<<<<<< HEAD
+=======
+
+
+  ///////DISPLAY FROM LOCAL STORAGE////////////////////
+  //fetch user mood log from local storage
+  $scope.userMoodLog = DataSvc.get();
+
+>>>>>>> efe_displayMoodLog
 
 })//end of Analytics Controller
 
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////
 
-.controller('FriendsCtrl', function($scope, Friends) {
-  $scope.friends = Friends.all();
-})
-
-.controller('FriendDetailCtrl', function($scope, $stateParams, Friends) {
-  $scope.friend = Friends.get($stateParams.friendId);
-})
 
 
 //Side menu js controller 
@@ -140,3 +183,10 @@ angular.module('happy.controllers', ['ionic'])
       };//end of toggle eval
   }//end of function
 
+
+ // $scope.data = {}
+    function insert(moodObj){
+        var userMoodLog = DataSvc.get();
+        userMoodLog.push(moodObj);
+        DataSvc.put(userMoodLog);
+      }

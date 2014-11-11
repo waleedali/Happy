@@ -1,5 +1,4 @@
-// Ionic Starter App
-
+// Happy
 // angular.module is a global place for creating, registering and retrieving Angular modules
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
@@ -20,6 +19,20 @@ angular.module('happy', ['ionic', 'happy.controllers', 'happy.services'])
     }
   });
 })
+
+
+// .run(function(DataSvc) {
+//   var testObject = MoodObject(99, new Date());
+//   $localstorage.setObject('happyMoodLogger.1.0', testObject);
+//   console.log($localstorage.get('happyMoodLogger.1.0'));
+  
+//   var post = $localstorage.getObject('happyMoodLogger.1.0');
+//   console.log(post);
+// })
+
+
+
+
 
 .config(function($stateProvider, $urlRouterProvider) {
 
