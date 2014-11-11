@@ -21,19 +21,6 @@ angular.module('happy', ['ionic', 'happy.controllers', 'happy.services'])
 })
 
 
-// .run(function(DataSvc) {
-//   var testObject = MoodObject(99, new Date());
-//   $localstorage.setObject('happyMoodLogger.1.0', testObject);
-//   console.log($localstorage.get('happyMoodLogger.1.0'));
-  
-//   var post = $localstorage.getObject('happyMoodLogger.1.0');
-//   console.log(post);
-// })
-
-
-
-
-
 .config(function($stateProvider, $urlRouterProvider) {
 
   // Ionic uses AngularUI Router which uses the concept of states
