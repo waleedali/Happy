@@ -1,6 +1,10 @@
 angular.module('happy.controllers', ['ionic'])
 
+<<<<<<< HEAD
 .controller('MoodCtrl', function($scope, $ionicPopup, DataSvc) {
+=======
+.controller('MoodCtrl', function($scope, $ionicPopup, $ionicTabsDelegate, $timeout) {
+>>>>>>> 62c1e610e4205474994850494174aefb99c2bd49
 
   //localStorage.removeItem('happyMoodLogger.1.0');
 
@@ -14,6 +18,7 @@ angular.module('happy.controllers', ['ionic'])
           text: '<b>Save</b>',
           type: 'button-positive',
           onTap: function(e) {
+<<<<<<< HEAD
 
                 var moodData = new MoodObject(swiper.activeLoopIndex, new Date());
                 console.log(moodData);
@@ -33,6 +38,22 @@ angular.module('happy.controllers', ['ionic'])
                 //localStorage.setItem('happyMoodLogger.1.0', JSON.stringify(userMoodLog));
               
           }//end of function
+=======
+                    var currentSize = window.localStorage['size'] || '0';
+                    window.localStorage['size'] = (parseInt(currentSize) + 1).toString();
+                    var moodData = {
+                        moodID: swiper.activeLoopIndex,
+                        time: getDateTime(),
+                        reason: $scope.data.note
+                    };
+                    window.localStorage[window.localStorage['size']] = JSON.stringify(moodData);
+                    var currentStorage = JSON.parse(window.localStorage[window.localStorage['size']] || '{}');
+//                alert(currentStorage['time']); 
+                alert(window.localStorage['size']);
+//                localStorage.clear();
+            return $scope.data.note;
+          }
+>>>>>>> 62c1e610e4205474994850494174aefb99c2bd49
         },
       ]
     });
@@ -66,14 +87,27 @@ angular.module('happy.controllers', ['ionic'])
             }
 
   $scope.init = function () {
-    var mySwiper = new Swiper('.swiper-container',{
-      //Your options here:
+    var swiperParent = new Swiper('.swiper-parent',{
+      slidesPerView: 1,
+      onSlideChangeEnd: function() {
+        $timeout(function(){
+          $ionicTabsDelegate.$getByHandle('HappyTabs').select(1);
+        },0)
+      }
+    })
+
+    var swiperNested1 = new Swiper('.swiper-nested-1',{
       mode:'vertical',
       loop: true,
       preventLinks: false,
       onSlideClick: saveMood
     });
-  };//end of function
+
+    var swiperNested2 = new Swiper('.swiper-nested-2',{
+      mode: 'vertical'
+    })
+
+  };
 
   // init the view
   $scope.init();
@@ -81,8 +115,12 @@ angular.module('happy.controllers', ['ionic'])
 })//end of Mood Controller
 
 
+<<<<<<< HEAD
 
 .controller('AnalyticsCtrl', function($scope, $ionicModal, $timeout, $ionicListDelegate, DataSvc){
+=======
+.controller('AnalyticsCtrl', function($scope, $ionicModal, $timeout, $ionicTabsDelegate){
+>>>>>>> 62c1e610e4205474994850494174aefb99c2bd49
 
   ////////////SETTINGS MODAL///////////////////////////
   // Create the settings modal that we will use later
@@ -102,6 +140,13 @@ angular.module('happy.controllers', ['ionic'])
   $scope.closeSettings = function() {
     $scope.modal.hide();
   };
+
+  $scope.swipeRight = function() {
+    console.log('hello!');
+    $timeout(function(){
+          $ionicTabsDelegate.$getByHandle('HappyTabs').select(0);
+        },0)
+  }
 
 
 
