@@ -1,36 +1,26 @@
 angular.module('happy.services', [])
 
+/**
+ * A simple example service that returns some data.
+ */
+.factory('Friends', function() {
+  // Might use a resource here that returns a JSON array
 
-.factory('DataSvc', function(){
+  // Some fake testing data
+  var friends = [
+    { id: 0, name: 'Scruff McGruff' },
+    { id: 1, name: 'G.I. Joe' },
+    { id: 2, name: 'Miss Frizzle' },
+    { id: 3, name: 'Ash Ketchum' }
+  ];
 
-        // localStorage key - increment version when data structure changes
-        var STORAGE_ID = 'happyMoodLogger.1.0';
-
-        // sample data to be used if no data exists in localStorage        
-        //var defaultObj = '{{"moodId":2, "date":""}}';
-        var svc = {            
-            get: get,
-            put: put,
-        };
-
-        return svc;
-
-        // get the whole "Mood Object" from localStorage
-        function get() {
-            return JSON.parse(localStorage.getItem(STORAGE_ID) || []);
-            
-        }//end of get function
-
-        // put the whole "Mood Object" in localStorage
-        function put(moodObj) {
-            localStorage.setItem(STORAGE_ID, JSON.stringify(moodObj));
-        }//end of put function
-
-    	
-
-      
-
-});//end of Data factory
-
-
-
+  return {
+    all: function() {
+      return friends;
+    },
+    get: function(friendId) {
+      // Simple index lookup
+      return friends[friendId];
+    }
+  }
+});
