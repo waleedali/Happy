@@ -11,22 +11,14 @@
         </ion-header-bar>    
     
 
-<<<<<<< HEAD
-   <ion-content class="has-header" on-swipe-right="swipeRight()">
-=======
-<<<<<<< HEAD
    <ion-content has-header="true" padding="true" on-swipe-right="swipeRight()">
-=======
-   <ion-content class="has-header" on-swipe-right="swipeRight()">
->>>>>>> 62c1e610e4205474994850494174aefb99c2bd49
->>>>>>> efe_displayMoodLog
 
     
       <!-- content goes here -->
     <ion-list>
       <ion-item ng-repeat="item in userMoodLog" type="item-text-wrap" >
          
-            
+            <!-- display -->
               <h2>{{ item }}</h2>
            
       </ion-item>
@@ -57,6 +49,10 @@
 
           <ion-item nav-clear menu-close ng-click="openSettings()">
           Settings
+          </ion-item>
+
+           <ion-item nav-clear menu-close href="#/sign-in">
+            Sign Out
           </ion-item>
 
         </ion-list>

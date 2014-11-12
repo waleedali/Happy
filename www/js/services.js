@@ -17,7 +17,7 @@ angular.module('happy.services', [])
 
         // get the whole "Mood Object" from localStorage
         function get() {
-            return JSON.parse(localStorage.getItem(STORAGE_ID) || {});
+            return JSON.parse(localStorage.getItem(STORAGE_ID) || []);
             
         }//end of get function
 

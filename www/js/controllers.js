@@ -1,14 +1,6 @@
 angular.module('happy.controllers', ['ionic'])
 
-<<<<<<< HEAD
-.controller('MoodCtrl', function($scope, $ionicPopup, $ionicTabsDelegate, $timeout) {
-=======
-<<<<<<< HEAD
 .controller('MoodCtrl', function($scope, $ionicPopup, DataSvc) {
-=======
-.controller('MoodCtrl', function($scope, $ionicPopup, $ionicTabsDelegate, $timeout) {
->>>>>>> 62c1e610e4205474994850494174aefb99c2bd49
->>>>>>> efe_displayMoodLog
 
   //localStorage.removeItem('happyMoodLogger.1.0');
 
@@ -22,20 +14,18 @@ angular.module('happy.controllers', ['ionic'])
           text: '<b>Save</b>',
           type: 'button-positive',
           onTap: function(e) {
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
 
                 var moodData = new MoodObject(swiper.activeLoopIndex, new Date());
-                console.log(moodData);
+                //alert(JSON.stringify(moodData));
                 var userMoodLog = JSON.parse(localStorage.getItem('happyMoodLogger.1.0'))|| [];
+                //var userMoodLog = DataSvc.get();
                 if (typeof(userMoodLog) === undefined||userMoodLog === null) {
 
                   userMoodLog=[];
                   
                 };
                 
-                console.log(userMoodLog);
+                //alert(userMoodLog);
 
                 userMoodLog.push(moodData);
 
@@ -44,77 +34,22 @@ angular.module('happy.controllers', ['ionic'])
                 //localStorage.setItem('happyMoodLogger.1.0', JSON.stringify(userMoodLog));
               
           }//end of function
-=======
->>>>>>> efe_displayMoodLog
-                    var currentSize = window.localStorage['size'] || '0';
-                    window.localStorage['size'] = (parseInt(currentSize) + 1).toString();
-                    var moodData = {
-                        moodID: swiper.activeLoopIndex,
-                        time: getDateTime(),
-                        reason: $scope.data.note
-                    };
-                    window.localStorage[window.localStorage['size']] = JSON.stringify(moodData);
-                    var currentStorage = JSON.parse(window.localStorage[window.localStorage['size']] || '{}');
-//                alert(currentStorage['time']); 
-                alert(window.localStorage['size']);
-//                localStorage.clear();
-            return $scope.data.note;
-          }
->>>>>>> 62c1e610e4205474994850494174aefb99c2bd49
         },
       ]
     });
   };
             
-        function getDateTime() {
-            var now     = new Date();
-            var year    = now.getFullYear();
-            var month   = now.getMonth()+1;
-            var day     = now.getDate();
-            var hour    = now.getHours();
-            var minute  = now.getMinutes();
-            var second  = now.getSeconds();
-            if(month.toString().length == 1) {
-                var month = '0'+month;
-            }
-            if(day.toString().length == 1) {
-                var day = '0'+day;
-            }
-            if(hour.toString().length == 1) {
-                var hour = '0'+hour;
-            }
-            if(minute.toString().length == 1) {
-                var minute = '0'+minute;
-            }
-            if(second.toString().length == 1) {
-                var second = '0'+second;
-            }   
-            var dateTime = year+'/'+month+'/'+day+' '+hour+':'+minute+':'+second;   
-                return dateTime;
-            }
+  
 
   $scope.init = function () {
-    var swiperParent = new Swiper('.swiper-parent',{
-      slidesPerView: 1,
-      onSlideChangeEnd: function() {
-        $timeout(function(){
-          $ionicTabsDelegate.$getByHandle('HappyTabs').select(1);
-        },0)
-      }
-    })
-
-    var swiperNested1 = new Swiper('.swiper-nested-1',{
+    var mySwiper = new Swiper('.swiper-container',{
+      //Your options here:
       mode:'vertical',
       loop: true,
       preventLinks: false,
       onSlideClick: saveMood
     });
-
-    var swiperNested2 = new Swiper('.swiper-nested-2',{
-      mode: 'vertical'
-    })
-
-  };
+  };//end of function
 
   // init the view
   $scope.init();
@@ -122,16 +57,8 @@ angular.module('happy.controllers', ['ionic'])
 })//end of Mood Controller
 
 
-<<<<<<< HEAD
-.controller('AnalyticsCtrl', function($scope, $ionicModal, $timeout, $ionicTabsDelegate){
-=======
-<<<<<<< HEAD
 
 .controller('AnalyticsCtrl', function($scope, $ionicModal, $timeout, $ionicListDelegate, DataSvc){
-=======
-.controller('AnalyticsCtrl', function($scope, $ionicModal, $timeout, $ionicTabsDelegate){
->>>>>>> 62c1e610e4205474994850494174aefb99c2bd49
->>>>>>> efe_displayMoodLog
 
   ////////////SETTINGS MODAL///////////////////////////
   // Create the settings modal that we will use later
@@ -152,29 +79,28 @@ angular.module('happy.controllers', ['ionic'])
     $scope.modal.hide();
   };
 
-  $scope.swipeRight = function() {
-    console.log('hello!');
-    $timeout(function(){
-          $ionicTabsDelegate.$getByHandle('HappyTabs').select(0);
-        },0)
-  }
-
-<<<<<<< HEAD
-=======
 
 
   ///////DISPLAY FROM LOCAL STORAGE////////////////////
   //fetch user mood log from local storage
   $scope.userMoodLog = DataSvc.get();
 
->>>>>>> efe_displayMoodLog
 
 })//end of Analytics Controller
 
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////
 
+.controller('SignInCtrl', function($scope, $state) {
+  
+  $scope.signIn = function(user) {
+    console.log('Sign-In', user);
+    $state.go('tab.mood');
+  };
+  
+})
 
+//////////////////////////////////////////////////////////////////////////////////////////////////////
 
 //Side menu js controller 
   function ContentController($scope, $ionicSideMenuDelegate) {
@@ -184,9 +110,3 @@ angular.module('happy.controllers', ['ionic'])
   }//end of function
 
 
- // $scope.data = {}
-    function insert(moodObj){
-        var userMoodLog = DataSvc.get();
-        userMoodLog.push(moodObj);
-        DataSvc.put(userMoodLog);
-      }

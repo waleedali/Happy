@@ -21,19 +21,6 @@ angular.module('happy', ['ionic', 'happy.controllers', 'happy.services'])
 })
 
 
-// .run(function(DataSvc) {
-//   var testObject = MoodObject(99, new Date());
-//   $localstorage.setObject('happyMoodLogger.1.0', testObject);
-//   console.log($localstorage.get('happyMoodLogger.1.0'));
-  
-//   var post = $localstorage.getObject('happyMoodLogger.1.0');
-//   console.log(post);
-// })
-
-
-
-
-
 .config(function($stateProvider, $urlRouterProvider) {
 
   // Ionic uses AngularUI Router which uses the concept of states
@@ -70,12 +57,25 @@ angular.module('happy', ['ionic', 'happy.controllers', 'happy.services'])
         }
       }
     })
+
+
+    //sign in
+    .state('signin', {
+      url: '/sign-in',
+      templateUrl: 'templates/sign-in.html',
+      controller: 'SignInCtrl'
+    })
+
+    .state('forgotpassword', {
+      url: '/forgot-password',
+      templateUrl: 'templates/forgot-password.html'
+    })
     
 
     
 
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/tab/mood');
+  $urlRouterProvider.otherwise('/sign-in');
 
 });//end of config
 
