@@ -1,21 +1,57 @@
 angular.module('happy.controllers', ['ionic'])
 
-.controller('MoodCtrl', function($scope) {
+.controller('MoodCtrl', function($scope, $ionicPopup, $ionicTabsDelegate, $timeout) {
 
-	var init = function () {
-	   var mySwiper = new Swiper('.swiper-container',{
-	    //Your options here:
-	    mode:'vertical',
-	    loop: true
-	  }); 
-	};//end of function
+  $scope.data = {}
 
-	// init the view
-	init();
+  var saveMood = function(swiper) {
+      $ionicPopup.show({
+      template: '<input type="text" placeholder=" What happened?" ng-model="data.note">',
+      title: 'Save this mood?',
+      scope: $scope,
+      buttons: [
+        { text: 'Cancel' },
+        {
+          text: '<b>Save</b>',
+          type: 'button-positive',
+          onTap: function(e) {
+            return $scope.data.note;
+          }
+        },
+      ]
+    });
+  };
+
+  $scope.init = function () {
+    var swiperParent = new Swiper('.swiper-parent',{
+      slidesPerView: 1,
+      onSlideChangeEnd: function() {
+        $timeout(function(){
+          $ionicTabsDelegate.$getByHandle('HappyTabs').select(1);
+        },0)
+      }
+    })
+
+    var swiperNested1 = new Swiper('.swiper-nested-1',{
+      mode:'vertical',
+      loop: true,
+      preventLinks: false,
+      onSlideClick: saveMood
+    });
+
+    var swiperNested2 = new Swiper('.swiper-nested-2',{
+      mode: 'vertical'
+    })
+
+  };
+
+  // init the view
+  $scope.init();
+
 })//end of Mood Controller
 
 
-.controller('AnalyticsCtrl', function($scope, $ionicModal, $timeout){
+.controller('AnalyticsCtrl', function($scope, $ionicModal, $timeout, $ionicTabsDelegate){
 
   ////////////SETTINGS MODAL///////////////////////////
   // Create the settings modal that we will use later
@@ -35,6 +71,13 @@ angular.module('happy.controllers', ['ionic'])
   $scope.closeSettings = function() {
     $scope.modal.hide();
   };
+
+  $scope.swipeRight = function() {
+    console.log('hello!');
+    $timeout(function(){
+          $ionicTabsDelegate.$getByHandle('HappyTabs').select(0);
+        },0)
+  }
 
 
 })//end of Analytics Controller
