@@ -70,12 +70,27 @@ angular.module('happy', ['ionic', 'happy.controllers', 'happy.services'])
         }
       }
     })
-    
 
+    .state('signin', {
+      url: '/sign-in',
+      templateUrl: 'templates/sign-in.html',
+      controller: 'SignInCtrl'
+    })
+
+    .state('signup', {
+      url: '/sign-up',
+      templateUrl: 'templates/sign-up.html',
+      controller: 'SignUpCtrl'
+    })
+
+    .state('forgotpassword', {
+      url: '/forgot-password',
+      templateUrl: 'templates/forgot-password.html'
+    })
     
 
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/tab/mood');
+  $urlRouterProvider.otherwise('sign-in');
 
 });//end of config
 

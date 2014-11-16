@@ -123,8 +123,55 @@ angular.module('happy.controllers', ['ionic'])
 })//end of Analytics Controller
 
 
-/////////////////////////////////////////////////////////////////////////////////////////////////////
+.controller('SignInCtrl', function($scope, $state, $http) {
+  
+  $scope.signIn = function(user) {
+    console.log('Sign-In', user);
 
+    $http({
+        method : 'POST',
+        url : 'http://localhost:4111/users/session',
+        data : 'email=' + user.email + '&password=' + user.password,
+        headers : {
+            'Content-Type' : 'application/x-www-form-urlencoded'
+        }
+    })
+    .success(function(result){
+      console.log(result);
+      $state.go('tab.mood');
+    })
+    .error(function(data, status, headers, config) {
+      console.log(status);
+    });
+
+  };
+  
+})
+
+.controller('SignUpCtrl', function($scope, $state, $http) {
+  
+  $scope.signUp = function(user) {
+    console.log('Sign-Up', user);
+
+    $http({
+        method : 'POST',
+        url : 'http://localhost:4111/users',
+        data : 'name=' + user.name + '&email=' + user.email + '&password=' + user.password,
+        headers : {
+            'Content-Type' : 'application/x-www-form-urlencoded'
+        }
+    })
+    .success(function(result){
+      console.log(result);
+      $state.go('tab.mood');
+    })
+    .error(function(data, status, headers, config) {
+      console.log(status);
+    });
+
+  };
+  
+})
 
 
 //Side menu js controller 
