@@ -90,7 +90,7 @@ angular.module('happy', ['ionic', 'happy.controllers', 'happy.services'])
     
 
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('sign-in');
+  $urlRouterProvider.otherwise('/tab/mood');
 
 });//end of config
 
