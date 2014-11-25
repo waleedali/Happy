@@ -12,7 +12,7 @@ angular.module('happy.controllers', ['ionic'])
           text: '<b>Save</b>',
           type: 'button-positive',
           onTap: function(e) {
-            var moodData = new MoodObject(swiper.activeLoopIndex, new Date());
+            var moodData = new MoodObject(swiper.activeLoopIndex+1, new Date());
             console.log(moodData);
             var userMoodLog = JSON.parse(localStorage.getItem('happyMoodLogger.1.0'))|| [];
             if (typeof(userMoodLog) === undefined||userMoodLog === null) {
@@ -119,6 +119,76 @@ angular.module('happy.controllers', ['ionic'])
   ///////DISPLAY FROM LOCAL STORAGE////////////////////
   //fetch user mood log from local storage
   $scope.userMoodLog = DataSvc.get();
+
+  var gauges = [];
+
+  function createGauge(name, label, min, max)
+  {
+    var config = {
+      size: 340,
+      label: label,
+      min: undefined != min ? min : 0,
+      max: undefined != max ? max : 100,
+      minorTicks: 5
+    }
+    
+    var range = config.max - config.min;
+    config.yellowZones = [{ from: config.min + range*0.75, to: config.min + range*0.9 }];
+    config.redZones = [{ from: config.min + range*0.9, to: config.max }];
+    
+    gauges[name] = new Gauge(name + "GaugeContainer", config);
+    gauges[name].render();
+  }
+
+  function createGauges()
+  {
+    createGauge("happy", "Happiness");
+  }
+
+  function updateGauges()
+  {
+    for (var key in gauges)
+    {
+      var value = getRandomValue(gauges[key])
+      gauges[key].redraw(value);
+    }
+  }
+
+  function getRandomValue(gauge)
+  {
+    var overflow = 0; //10;
+    return gauge.config.min - overflow + (gauge.config.max - gauge.config.min + overflow*2) *  Math.random();
+  }
+
+  $scope.init = function initialize()
+  {
+    createGauges();
+  }
+
+  $scope.init();
+
+  $scope.$on('$viewContentLoaded',
+    function(event, viewConfig){ 
+        console.log("View Load: the view is loaded, and DOM rendered!");
+
+        // random updates for 3 seconds
+        var interval = setInterval(updateGauges, 500);
+
+        setTimeout(function() {
+          // stop the random updates
+          window.clearInterval(interval);
+
+          // draw the actual average based on the mood logs
+          var average,
+            sum = 0;
+          for (var i=0; i < $scope.userMoodLog.length; i++) {
+            sum += (100-(($scope.userMoodLog[i].moodId*100)/5));
+          }
+          average = sum/$scope.userMoodLog.length;
+          console.log(average);
+          gauges["happy"].redraw(average);
+        }, 3000);
+    });
 
 })//end of Analytics Controller
 
