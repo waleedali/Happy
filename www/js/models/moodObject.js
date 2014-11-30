@@ -1,9 +1,11 @@
 // simple JS object to represent an Mood
 // this is used when creating a new user Mood entry
 
-function MoodObject(moodId, date) {
-	// also has ID - to be set when inserting
-	this.moodId = moodId;
+function MoodObject(keyFeeling, moodIntensity, positiveScale, date) {
+	this.keyFeeling = keyFeeling;
+	this.moodIntensity = moodIntensity;
+	this.positiveScale = positiveScale;
 	this.date = date;
 	
 }
+

@@ -1,95 +1,140 @@
-angular.module('happy.controllers', ['ionic'])
+angular.module('starter.controllers', ['ionic', 'ionic.contrib.ui.cards'])
 
-.controller('MoodCtrl', function($scope, $ionicPopup, $ionicTabsDelegate, $timeout, DataSvc) {
 
-  var saveMood = function(swiper) {
-      $ionicPopup.show({
-      title: 'Save this mood?',
-      scope: $scope,
-      buttons: [
-        { text: 'Cancel' },
-        {
-          text: '<b>Save</b>',
-          type: 'button-positive',
-          onTap: function(e) {
-            var moodData = new MoodObject(swiper.activeLoopIndex+1, new Date());
-            console.log(moodData);
-            var userMoodLog = JSON.parse(localStorage.getItem('happyMoodLogger.1.0'))|| [];
-            if (typeof(userMoodLog) === undefined||userMoodLog === null) {
 
-              userMoodLog=[];
-              
-            };
-            
-            console.log(userMoodLog);
 
-            userMoodLog.push(moodData);
+.controller('MoodCtrl', function($scope, $ionicSwipeCardDelegate, $ionicTabsDelegate, DataSvc, userDataCrunch) {
+  //to track index postion of moods
+  var index = 0;
+  console.log('index: '+index);
+  //updates the index 
+  function postionTracker(){
+    if(index == 12) index = 0;
+    else index++;
+    console.log('index: '+index);
+  }//fend
 
-            DataSvc.put(userMoodLog);
-              
-          }//end of function
-        },
-      ]
-    });
+
+  console.log('CARDS CTRL');
+  var cardTypes = [{
+    image: 'img/pic.png',
+    keyFeeling:'Happy',
+    positiveScale: 'positive'
+  },{
+    image: 'img/pic.png',
+    keyFeeling:'Relaxed',
+    positiveScale: 'neutral'
+  },{
+    image: 'img/pic.png',
+    keyFeeling:'Creative',
+    positiveScale: 'positive'
+  },{
+    image: 'img/pic.png',
+    keyFeeling:'Active',
+    positiveScale: 'positive'
+  },{
+    image: 'img/pic.png',
+    keyFeeling:'Peaceful',
+    positiveScale: 'positive'
+  },{
+    image: 'img/pic.png',
+    keyFeeling:'Excited',
+    positiveScale: 'positive'
+  },{
+    image: 'img/pic.png',
+    keyFeeling:'Tired',
+    positiveScale: 'neutral'
+  },{
+    image: 'img/pic.png',
+    keyFeeling:'Bored',
+    positiveScale: 'neutral'
+  },{
+    image: 'img/pic.png',
+    keyFeeling:'Stressed',
+    positiveScale: 'negative'
+  },{
+    image: 'img/pic.png',
+    keyFeeling:'Nervous',
+    positiveScale: 'negative'
+  },{
+    image: 'img/pic.png',
+    keyFeeling:'Upset',
+    positiveScale: 'negative'
+  },{
+    image: 'img/pic.png',
+    keyFeeling:'Angry',
+    positiveScale: 'negative'
+  },{
+    image: 'img/pic.png',
+    keyFeeling:'Scared',
+    positiveScale: 'negative'
+  }];
+
+  $scope.cards = Array.prototype.slice.call(cardTypes[0]);
+
+
+  console.log('Cards', $scope.cards);
+
+
+  $scope.cardSwiped = function(index) {
+    $scope.addCard();
   };
-            
-  function getDateTime() {
-      var now     = new Date();
-      var year    = now.getFullYear();
-      var month   = now.getMonth()+1;
-      var day     = now.getDate();
-      var hour    = now.getHours();
-      var minute  = now.getMinutes();
-      var second  = now.getSeconds();
-      if(month.toString().length == 1) {
-          var month = '0'+month;
-      }
-      if(day.toString().length == 1) {
-          var day = '0'+day;
-      }
-      if(hour.toString().length == 1) {
-          var hour = '0'+hour;
-      }
-      if(minute.toString().length == 1) {
-          var minute = '0'+minute;
-      }
-      if(second.toString().length == 1) {
-          var second = '0'+second;
-      }   
-      var dateTime = year+'/'+month+'/'+day+' '+hour+':'+minute+':'+second;   
-          return dateTime;
+
+  $scope.cardDestroyed = function(index) {
+    //$scope.cards.splice(index, 1);
+
+  };
+
+  $scope.addCard = function() {
+  var newCard = cardTypes[index];
+  postionTracker();
+  //var newCard = cardTypes[Math.floor(Math.random() * cardTypes.length)];
+    newCard.id = Math.random();
+    $scope.cards.push(angular.extend({}, newCard));
   }
 
-  $scope.init = function () {
-    var swiperParent = new Swiper('.swiper-parent',{
-      slidesPerView: 1,
-      onSlideChangeEnd: function() {
-        $timeout(function(){
-          $ionicTabsDelegate.$getByHandle('HappyTabs').select(1);
-        },0)
-      }
-    })
+  //save user mood input
+  $scope.saveMood = function(){
 
-    var swiperNested1 = new Swiper('.swiper-nested-1',{
-      mode:'vertical',
-      loop: true,
-      preventLinks: false,
-      onSlideClick: saveMood
-    });
+    //THERE IS ONE BUG AND THAT IS AFTER FIRST SUBMISSION WITHOUT RESTARTING THE APP THE INTESISTY LEVEL 
+    //WILL NOT CHANGE AND ANY OTHER SUBMITS WILL HOLD THE PREVIOS LEVEL
+    
+    var optionListIndex = document.getElementById("intensityLevel").selectedIndex;
+    var currentIntensity = parseInt(document.getElementById("intensityLevel").options[optionListIndex].value);
+    
+    console.log('Intensity Level: ' + currentIntensity);
+    //alert('Intensity Level: ' + currentIntensity);
+    var currentKeyFeeling = cardTypes[index-1].keyFeeling;
+    var thisScaleLevel = cardTypes[index-1].positiveScale;
 
-    var swiperNested2 = new Swiper('.swiper-nested-2',{
-      mode: 'vertical'
-    })
+    console.log(currentKeyFeeling);
+    alert(currentKeyFeeling + '      ' + 'Intensity Level: ' + currentIntensity  );
 
-  };
+    //create new mood object based upon user input
+    var moodData = new MoodObject(currentKeyFeeling , currentIntensity, thisScaleLevel, new Date());
+    console.log(moodData);
+    //prepare local storage key and unpack json from local storage
+    //var userMoodLog = JSON.parse(localStorage.getItem('happyMoodLogger.1.0'))|| [];
+    var userMoodLog = DataSvc.get();
+    //control mechanism for the array
+    if (typeof(userMoodLog) === undefined||userMoodLog === null) userMoodLog=[];
 
-  // init the view
-  $scope.init();
+    console.log(userMoodLog);
+    //push the current user selection into array
+    userMoodLog.push(moodData);
+    //send entry to data crunch
+    userDataCrunch.updateData(moodData);
+    //send updates to local storage
+    DataSvc.put(userMoodLog);
 
-})//end of Mood Controller
+  }//fend
+   
 
 
-.controller('AnalyticsCtrl', function($scope, $ionicModal, $timeout, $ionicTabsDelegate, $ionicListDelegate, DataSvc){
+  
+})//end of mood controller
+
+.controller('AnalyticsCtrl', function($scope, $ionicModal, $timeout, $ionicListDelegate, $ionicSideMenuDelegate, userDataCrunch){
 
   ////////////SETTINGS MODAL///////////////////////////
   // Create the settings modal that we will use later
@@ -110,151 +155,35 @@ angular.module('happy.controllers', ['ionic'])
     $scope.modal.hide();
   };
 
-  $scope.swipeRight = function() {
-    $timeout(function(){
-          $ionicTabsDelegate.$getByHandle('HappyTabs').select(0);
-        },0)
+  $scope.updateAnalyticalData = function(){
+
   }
+
 
   ///////DISPLAY FROM LOCAL STORAGE////////////////////
   //fetch user mood log from local storage
-  $scope.userMoodLog = DataSvc.get();
+  
+  
 
-  var gauges = [];
+        
 
-  function createGauge(name, label, min, max)
-  {
-    var config = {
-      size: 340,
-      label: label,
-      min: undefined != min ? min : 0,
-      max: undefined != max ? max : 100,
-      minorTicks: 5
-    }
-    
-    var range = config.max - config.min;
-    config.yellowZones = [{ from: config.min + range*0.75, to: config.min + range*0.9 }];
-    config.redZones = [{ from: config.min + range*0.9, to: config.max }];
-    
-    gauges[name] = new Gauge(name + "GaugeContainer", config);
-    gauges[name].render();
-  }
 
-  function createGauges()
-  {
-    createGauge("happy", "Happiness");
-  }
 
-  function updateGauges()
-  {
-    for (var key in gauges)
-    {
-      var value = getRandomValue(gauges[key])
-      gauges[key].redraw(value);
-    }
-  }
 
-  function getRandomValue(gauge)
-  {
-    var overflow = 0; //10;
-    return gauge.config.min - overflow + (gauge.config.max - gauge.config.min + overflow*2) *  Math.random();
-  }
-
-  $scope.init = function initialize()
-  {
-    createGauges();
-  }
-
-  $scope.init();
-
-  $scope.$on('$viewContentLoaded',
-    function(event, viewConfig){ 
-        console.log("View Load: the view is loaded, and DOM rendered!");
-
-        // random updates for 3 seconds
-        var interval = setInterval(updateGauges, 500);
-
-        setTimeout(function() {
-          // stop the random updates
-          window.clearInterval(interval);
-
-          // draw the actual average based on the mood logs
-          var average,
-            sum = 0;
-          for (var i=0; i < $scope.userMoodLog.length; i++) {
-            sum += (100-(($scope.userMoodLog[i].moodId*100)/5));
-          }
-          average = sum/$scope.userMoodLog.length;
-          console.log(average);
-          gauges["happy"].redraw(average);
-        }, 3000);
-    });
 
 })//end of Analytics Controller
 
 
-.controller('SignInCtrl', function($scope, $state, $http) {
-  
-  $scope.signIn = function(user) {
-    console.log('Sign-In', user);
-
-    $http({
-        method : 'POST',
-        url : 'http://localhost:4111/users/session',
-        data : 'email=' + user.email + '&password=' + user.password,
-        headers : {
-            'Content-Type' : 'application/x-www-form-urlencoded'
-        }
-    })
-    .success(function(result){
-      console.log(result);
-      $state.go('tab.mood');
-    })
-    .error(function(data, status, headers, config) {
-      console.log(status);
-    });
-
-  };
-  
-})
-
-.controller('SignUpCtrl', function($scope, $state, $http) {
-  
-  $scope.signUp = function(user) {
-    console.log('Sign-Up', user);
-
-    $http({
-        method : 'POST',
-        url : 'http://localhost:4111/users',
-        data : 'name=' + user.name + '&email=' + user.email + '&password=' + user.password,
-        headers : {
-            'Content-Type' : 'application/x-www-form-urlencoded'
-        }
-    })
-    .success(function(result){
-      console.log(result);
-      $state.go('tab.mood');
-    })
-    .error(function(data, status, headers, config) {
-      console.log(status);
-    });
-
-  };
-  
-})
-
-
-//Side menu js controller 
-  function ContentController($scope, $ionicSideMenuDelegate) {
+ .controller('NavController', function($scope, $ionicSideMenuDelegate) {
       $scope.toggleLeft = function() {
-      $ionicSideMenuDelegate.toggleLeft();
-      };//end of toggle eval
-  }//end of function
+        $ionicSideMenuDelegate.toggleLeft();
+      };
+    })
 
 
- // $scope.data = {}
-    function insert(moodObj){
-        var userMoodLog = DataSvc.get();
-        userMoodLog.push(moodObj);
-        DataSvc.put(userMoodLog);
-      }
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+

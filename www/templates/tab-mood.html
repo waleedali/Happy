@@ -1,40 +1,51 @@
-<div class="swiper-container swiper-parent">
-  <div class="swiper-wrapper">
+<ion-view title="Mood" noscroll>
+<ion-header-bar class="bar-transparent">
+        <h1 class="title"></h1>
+      </ion-header-bar>
+      <ion-content>
+      <swipe-cards>
+      <swipe-card on-card-swipe="cardSwiped()" id="start-card">
+        Swipe down for a new card
+      </swipe-card>
+      <swipe-card ng-repeat="card in cards" on-destroy="cardDestroyed($index)" on-card-swipe="cardSwiped($index)">
+        
+          
+          <div class="title">
+          {{card.keyFeeling}}
+          </div>
+          <!-- {card.position}} -->
+          
+          <div class="image">
+            <img ng-src="{{card.image}}">
+          </div>
 
-
-    <div class="swiper-slide">
-      <div class="swiper-container swiper-nested-1">
-        <div class="swiper-wrapper">
-          <div class="swiper-slide slide1 mood-face">
-            B
-          </div>
-          <div class="swiper-slide slide2 mood-face">
-            C
-          </div>
-          <div class="swiper-slide slide3 mood-face">
-            G
-          </div>
-          <div class="swiper-slide slide4 mood-face">
-            L
-          </div>
-          <div class="swiper-slide slide5 mood-face">
-            2
-          </div>
-          <div class="swiper-slide slide6 mood-face">
-            M
-          </div>
+          <div class="intensity">
+        
+        <form id="moodIntensity" onsubmit="this.reset()">  
+        <label class="item item-input item-select">
+        <div class="input-label">Intensity</div>
+      
+        	<select id="intensityLevel">
+        		<option value="5">5</option>
+        		<option value="4">4</option>
+        		<option value="3">3</option>
+        		<option value="2">2</option>
+        		<option value="1">1</option>
+        	</select>
+  
+        </label>
+        </form>
+      
         </div>
-      </div>
-    </div>
+  
+          <div class="button-bar">
+            <button class="button button-clear button-positive" ng-click="saveMood()">Submit</button>
+          </div>
+
+        
+      </swipe-card>
+    </swipe-cards>
+  </ion-content>
 
 
-    <div class="swiper-slide">
-      <div class="swiper-container swiper-nested-2">
-        <div class="swiper-wrapper">
-          <div class="swiper-slide"></div>
-        </div>
-      </div>
-    </div>
-
-  </div>
-</div>
+</ion-view>

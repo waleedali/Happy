@@ -1,56 +1,130 @@
-/* Empty. Add your own CSS if you like */
-.swiper-slide {
-  	background-color: #FF9900;
-  	border-top: none;
+/* Your app's CSS, go crazy, make it your own */
+
+
+
+.pane {
+  background-color: #FFE56D;
 }
 
-.swiper-container {
-	background-color: #FFFF00;
+.bar.bar-transparent {
+  background-color: #FFE56D;
+  background-image: none;
+  border: none;
 }
 
-.slide1 {
-	background-color: #FFFF00;
+.tabs-dark > .tabs {
+background:none;
+
+padding-top:0px;
+
 }
 
-.slide2 {
-	background-color: #FFFF00;
+
+
+.bar .title {
+  color: black;
 }
 
-.slide3 {
-	background-color: #FFFF00;
+.swipe-cards {
+  position: fixed;
+
 }
 
-.slide4 {
-	background-color: #FFFF00;
+.swipe-card {
+  
+  position: fixed;
+  -webkit-transform: scale(1,1);
+  left: 50%;
+  width: 300px;
+  height: 340px;
+  margin-left: -150px;
+  margin-top: 1px;
+  box-sizing: border-box;
+  background-color: #FFFFD2;
+  border: 3px solid #4CD68E;
+  border-radius: 10px;
+  overflow: hidden;
+  -webkit-animation-fill-mode: forwards;
 }
 
-.slide5 {
-	background-color: #FFFF00;
+.swipe-card .title {
+  text-align: center;
+  font-style: helvetica;
+  font-size: 2.5em;
+  height: 40px;
+  padding: 8px;
+  /*line-height: 30px;*/
+  color: #4CD68E;
+}
+.swipe-card .image {
+  overflow: hidden;
+  max-height: 210px;
+}
+.swipe-card .button {
+  border: none;
+}
+.swipe-card .image img {
+  width: 100%;
+  border-radius: 0px 0px 4px 4px;
 }
 
-.slide6 {
-	background-color: #FFFF00;
-}
-
-@font-face {
-    font-family: moodFont;
-    src: url(../fonts/YolksEmoticons.otf) format("opentype");
-}
-
-.mood-face {
-	text-align: center;
-	vertical-align: middle;
-	font-family: moodFont;
-	padding-top: 55%;
-	display: inline-block;
-	font-size: 200pt;
-}
-
-.gauge-container {
+.swipe-card .intensity{
   text-align: center;
 }
+.swipe-card label{
+  background-color: #FFFFD2;
+  border: none;
+}
+.swipe-card select{
+  background-color: #FFFFD2;
+  border: none;
+}
 
-.centered {
+#start-card {
+  color: #fff;
+  background-color: #30BD8A;
+  line-height: 300px;
+  word-wrap: break-word;
+  border: 6px solid #4CD68E;
+  border-radius: 10px;
   text-align: center;
 }
+#start-card span {
+  display: inline-block;
+  line-height: 40px;
+  width: 200px;
+  font-size: 30px;
+  vertical-align: middle;
+}
+
+#footer .button {
+  color: yellow;
+}
+
+@-webkit-keyframes bounceIn {
+  0% {
+    -webkit-transform: scale(0,0);
+  }
+  70% {
+    -webkit-transform: scale(1.2,1.2);
+  }
+  100% {
+    -webkit-transform: scale(1,1);
+  }
+}
+
+.swipe-card.pop-in-start {
+  -webkit-transform: scale(0,0);
+}
+.swipe-card.pop-in {
+  -webkit-animation: bounceIn 0.4s ease-out;
+}
+
+
+#dataView{
+background: gray;
+border: thin solid black;
+padding: 10px;
+}
+
 
