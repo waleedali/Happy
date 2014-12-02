@@ -119,6 +119,7 @@ angular.module('happy.controllers', ['ionic'])
   ///////DISPLAY FROM LOCAL STORAGE////////////////////
   //fetch user mood log from local storage
   $scope.userMoodLog = DataSvc.get();
+  $scope.insight = "Do you need a change?";
 
   var gauges = [];
 
@@ -165,12 +166,44 @@ angular.module('happy.controllers', ['ionic'])
     createGauges();
   }
 
+  function updateInsight(value)
+  {
+    var needAChange = ", do you need a change?";
+    if (value > 85) {
+      $scope.insight = "whoa mama!";
+    } else if (value > 80) {
+      $scope.insight = "Super!";
+    } else if (value > 70) {
+      $scope.insight = "Good!";
+    } else if (value > 65) {
+      $scope.insight = "pretty well!";
+    } else if (value > 60) {
+      $scope.insight = "nice!";
+    } else if (value > 50) {
+      $scope.insight = "fine!";
+    } else if (value > 45) {
+      $scope.insight = "soso" + needAChange;
+    } else if (value > 40) {
+      $scope.insight = "dull" + needAChange;
+    } else {
+      $scope.insight = "bad" + needAChange;
+    }
+  }
+
   $scope.init();
 
   $scope.$on('$viewContentLoaded',
     function(event, viewConfig){ 
         console.log("View Load: the view is loaded, and DOM rendered!");
 
+        var average,
+          sum = 0;
+        for (var i=0; i < $scope.userMoodLog.length; i++) {
+          sum += (100-(($scope.userMoodLog[i].moodId*100)/5));
+        }
+        average = sum/$scope.userMoodLog.length;
+
+        updateInsight(average);
         // random updates for 3 seconds
         var interval = setInterval(updateGauges, 500);
 
@@ -179,13 +212,6 @@ angular.module('happy.controllers', ['ionic'])
           window.clearInterval(interval);
 
           // draw the actual average based on the mood logs
-          var average,
-            sum = 0;
-          for (var i=0; i < $scope.userMoodLog.length; i++) {
-            sum += (100-(($scope.userMoodLog[i].moodId*100)/5));
-          }
-          average = sum/$scope.userMoodLog.length;
-          console.log(average);
           gauges["happy"].redraw(average);
         }, 3000);
     });
